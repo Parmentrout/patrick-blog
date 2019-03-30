@@ -5,7 +5,7 @@ description= "Who wants pancakes!?"
 author = "Patrick Armentrout"
 paginate = 5
 copyright = "All rights reserved - 2019"
-theme = "hugo-theme-bootstrap"
+theme = "startbootstrap-clean-blog"
 disableKinds = ["taxonomy", "taxonomyTerm"]
 
 [params]

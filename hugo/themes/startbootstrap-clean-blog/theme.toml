@@ -12,6 +12,7 @@ min_version = 0.18
   homepage = "http://www.humboldtux.com"
 
 # original theme
+
 [original]
   name = "Startbootstrap Clean Blog"
   homepage = "http://startbootstrap.com/template-overviews/clean-blog/"
