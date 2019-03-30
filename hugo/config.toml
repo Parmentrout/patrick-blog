@@ -1,0 +1,21 @@
+baseURL= "/"
+languageCode= "en"
+title= "Patrick's Fancy Blog"
+description= "Who wants pancakes!?"
+author = "Patrick Armentrout"
+paginate = 5
+copyright = "All rights reserved - 2019"
+theme = "hugo-theme-bootstrap"
+disableKinds = ["taxonomy", "taxonomyTerm"]
+
+[params]
+  description = "Who wants pancakes!?"
+  metadescription = "Used as 'description' meta tag for both home and index pages. If not set, 'description' will be used instead"
+  cover = "/img/darius-soodmand.jpg"
+  author = "Patrick Armentrout"
+  authorlocation = "Earth, Milky Way Galaxy"
+  authorwebsite = ""
+  authorbio= ""
+  logo = ""
+  hjsStyle = "default"
+  paginatedsections = ["posts"]
