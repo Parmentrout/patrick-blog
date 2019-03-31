@@ -1,6 +1,11 @@
 ---
 title: 'Welcome!'
-date: '2019-03-29T13:59:56+05:30'
+description: 'Welcome to my blog...'
+author:
+  name: 'Patrick Armentrout'
+  desc: ' '
+date: 2019-03-26
+draft: false
 ---
 
 Hey! Welcome to my software blog! I'm _Patrick Armentrout_, a software engineer from Denver, CO.
