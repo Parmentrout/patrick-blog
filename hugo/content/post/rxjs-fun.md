@@ -10,11 +10,13 @@ categories:
   - tutorials
 ---
 
-## About
+## Purpose
 
-[RXJS](angular.io/guide/rx-library) (if you are new to Angular) is an asynchronous library used within Angular that allows us to manipulate a data stream. In this post, I'll go through a few patterns I've consistently used, and how to apply them to incoming data.
+As a friend once told me, [RXJS](angular.io/guide/rx-library) is like climbing a cliff that you'll probably fall off of a couple times.  The learning curve can be steep but once you get the hang of it, using data streams can lead to some really cool UI potential.
 
-We're going to take a look at the following operators:
+This article will walk through a few patterns I've consistently used, and how to apply them to incoming data.
+
+We're going to take a look at the following lettable operators:
 
 - map
 - tap
@@ -22,9 +24,13 @@ We're going to take a look at the following operators:
 - takeUntil
 - switchMap
 
+These are operators that are added in a `.pipe()` before a `.subscribe()` so that we can process data in the stream, before we pull it through.
+
+I.e. `observable$.pipe(...).subscribe(results => ...)`
+
 ### map
 
-The `map` operator allows us to synchronously manipulate data in a pipe and return it as a different type. For instance if I have the following method:
+The `map` operator is one of the more commonly used operators.  It allows us to manipulate our data stream by  pulling the existing Observable results and returning it as a different type. For instance if I have the following method:
 
     import { interval } from 'rxjs';
 
@@ -43,6 +49,8 @@ However with a `map` operator we can to convert our interval from `Observable<nu
 
 So any subscriber listening would get `'Counter: 1', 'Counter: 2', 'Counter: 3....'`
 
+High level we are just _mapping_ (ha! get it!?) our observable from a number result to a string result.
+
 This is really useful in common conversions in observables, as well as any business logic you want to have at the service level. For instance:
 
 <b>my-service.ts</b>
@@ -54,7 +62,7 @@ This is really useful in common conversions in observables, as well as any busin
 
 Instead of having to do a json() convert in every subscriber that uses our getData\$() method, we can include the logic in a map operator and only make it at the topmost layer! This prevents all subscribers from having to duplicate logic, and more easily allows the data to persist neatly in an [async pipe](https://angular.io/api/common/AsyncPipe).
 
-###tap
+### tap
 
 Similar to map, however the tap operator won't manipulate the data in the stream. This is a handy operator for logging and general background processing.
 
@@ -71,9 +79,9 @@ I'll use this a lot for controlling page load logic:
 
 Both the map and the tap operator are especially important for when using an async pipe and persisting Observables all the way to the template.
 
-###takeUntil
+### takeUntil
 
-As powerful as Observers are they can also be a potential memory leak if not cleaned up carefully. takeUntil allows us to add an event listener to an Observable stream. When the event inside of takeUntil fires, the stream will close itself from any incoming messages. For instance take the component below:
+As powerful as Observers are they can also be a potential memory leak if not cleaned up carefully. `takeUntil` allows us to add an event listener to an Observable stream. When the event inside of takeUntil fires, the stream will close itself from any incoming messages. For instance take the component below:
 
     private _cancellationToken: Subject<void> = new Subject();
 
@@ -92,4 +100,57 @@ We have potentially two open observables that need to be closed when the compone
 
 This is a great pattern for all components with observable subscriptions
 
-### switchmap
+### switchMap
+
+The best way to think about `switchmap` is a `map` operator but for asynchronous data.  This is especially useful for when you have two observables and one relies on the other.  For instance:
+
+We have two service methods below, one fetches user data and the other looks up user preferences:
+
+    // myservice.ts
+
+    currentUserId$: Observable<number>;
+
+    getUserData(userId: number): Observable<User> {
+        return this.http.get(`http://preferences-api/${userId}`)
+            .pipe(map(result => result.json() as User));
+    }
+
+Since these are both Oberservables, we need the results from `currentUserId$` before we can call `getUserData(userId)`;
+
+An anti-pattern here would be to nest the subscriptions together.  So first subscribe to `currentUserId$`, then call `getUserData()` in the next block, however this leads to potential timing and memory issues:
+
+<b>Anti pattern:</b>
+    
+    // Component
+
+    currentUser: User;
+
+    constructor(private _myService: MyService) {
+        _myService.currentUser$.subscribe(userId => {
+            _myservice.getUserData(userId).subscribe(user => this.currentUser = user);
+        })
+    }
+
+Yikes!  Not only is this difficult to read but could lead to major timing issues if currentUser$ is pushing data often.  What we need to do is combine the two Observables into one stream:
+
+    currentUser: User;
+    cancellationToken: Subject<void>;
+
+    constructor(private _myService: MyService) {
+        _myService.currentUser$
+            .pipe(
+                takeUntil(this.cancellationToken),
+                switchMap(userId => _myService.getUserData(userId)))
+            .subscribe(user => this.currentUser = user);
+        })
+    }
+
+What we do instead is call `currentUser` and _switchMap_ the results into calling a dependent service.  As an added benefit, since these 2 api calls are combined in one stream, we can now add a takeUntil at the root so that both calls are cleaned up properly!
+
+## More Info:
+
+[Learn RXJS](https://www.learnrxjs.io/) is a great encyclopedia for all the RXJS operators available!
+
+[Angular RXJS](https://angular.io/guide/rx-library) also is a helpful resource for learning patterns specific to Angular.
+
+Thanks for reading!  Feel free to contact me if you have any questions or would like more clarity on the _Subject_ (pun intended, ha!)

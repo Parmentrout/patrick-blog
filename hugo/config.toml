@@ -1,21 +1,25 @@
-baseURL= "/"
-languageCode= "en"
-title= "Patrick's Fancy Blog"
+baseURL= ""
+languageCode= "en-us"
+title= "Patrick's Angular Blog"
 description= "Who wants pancakes!?"
 author = "Patrick Armentrout"
 paginate = 5
 copyright = "All rights reserved - 2019"
 theme = "startbootstrap-clean-blog"
-disableKinds = ["taxonomy", "taxonomyTerm"]
+disableKinds = ["tags", "in"]
 
 [params]
-  description = "Who wants pancakes!?"
-  metadescription = "Used as 'description' meta tag for both home and index pages. If not set, 'description' will be used instead"
-  cover = "/img/darius-soodmand.jpg"
-  author = "Patrick Armentrout"
-  authorlocation = "Earth, Milky Way Galaxy"
-  authorwebsite = ""
-  authorbio= ""
-  logo = ""
+  DateForm = "Mon, Jan 2, 2006"
+  Description = "Who wants pancakes!?"
+  Author = "Patrick Armentrout"
+  email = "patrick.armentrout@gmail.com"
+  Ganalytics = "XX-00000000-0"
   hjsStyle = "default"
   paginatedsections = ["posts"]
+
+[[params.social]]
+    title = "twitter"
+    url = "https://twitter.com/patricka50"
+[[params.social]]
+    title = "github"
+    url = "https://github.com/Parmentrout"

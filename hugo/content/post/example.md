@@ -1,6 +1,6 @@
 ---
 title: 'Welcome!'
-description: 'Welcome to my blog...'
+description: 'Welcome to my fancy blog...'
 author:
   name: 'Patrick Armentrout'
   desc: ' '

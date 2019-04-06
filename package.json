@@ -6,7 +6,7 @@
   "author": "forestryio",
   "license": "MIT",
   "scripts": {
-    "start": "gulp server",
+    "start": "npm priview",
     "preview": "cross-env NODE_ENV=production GENRATOR_ARGS=preview gulp server",
     "build": "cross-env NODE_ENV=production gulp build",
     "clean": "gulp clean",
@@ -63,5 +63,7 @@
     "webpack-stream": "^4.0.0",
     "whatwg-fetch": "^1.0.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "natives": "^1.1.6"
+  }
 }
