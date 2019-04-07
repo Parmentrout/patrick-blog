@@ -6,7 +6,7 @@
   "author": "forestryio",
   "license": "MIT",
   "scripts": {
-    "start": "npm priview",
+    "start": "npm preview",
     "preview": "cross-env NODE_ENV=production GENRATOR_ARGS=preview gulp server",
     "build": "cross-env NODE_ENV=production gulp build",
     "clean": "gulp clean",

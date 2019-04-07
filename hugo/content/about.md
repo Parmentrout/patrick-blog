@@ -7,7 +7,7 @@ weight = -190
 
 +++
 
-Thanks for checking out my blog!  This is Patrick, I'm a software engineer with about 8 years experience, most of which in web development.  I've been working with Angular since the first 2.x release and in general enjoy making fun and performant web applications. 
+Thanks for checking out my blog! I'm a software engineer with about 8 years experience, most of which in web development.  I've been working with Angular since the first 2.x release and in general enjoy making fun and performant web applications. 
 
 Outside of software I enjoy traveling with my beautiful wife, running, brewing beer and chasing around my two toddlers :).
 
