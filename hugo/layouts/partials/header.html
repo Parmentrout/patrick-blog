@@ -7,7 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Angular Training and Tutorials">
-    <meta name="author" content="{{ if .Params.authors }}{{ .Params.authors }}{{ else if .Site.Params.Author }}{{.Site.Params.Author}}{{ end }}">
+    <meta name="description" content="Patrick Armentrout Angular Blog" />
+    <!-- <meta name="author" content="Patrick Armentrout" />
+        <meta name="keywords" content="Angular, Angular Tutorial, Patrick Armentrout" /> -->
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="author"
+        content="{{ if .Params.authors }}{{ .Params.authors }}{{ else if .Site.Params.Author }}{{.Site.Params.Author}}{{ end }}">
     <meta name="keywords" content="{{ if .Keywords }}{{ delimit .Keywords ", " }}{{ end }}">
 
 
@@ -24,15 +30,17 @@
     <!-- Custom CSS -->
     <link href="{{ .Site.BaseURL }}/css/clean-blog.min.css" rel="stylesheet">
     {{- range $val := $.Site.Params.customCSS -}}
-	{{- if gt (len $val) 0 -}}
-		<link rel="stylesheet" type="text/css" href="{{ $val }}">
-	{{- end -}}
+    {{- if gt (len $val) 0 -}}
+    <link rel="stylesheet" type="text/css" href="{{ $val }}">
+    {{- end -}}
     {{- end -}}
 
     <!-- Custom Fonts -->
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link
+        href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+        rel='stylesheet' type='text/css'>
 
     <link rel="icon" href="{{ .Site.BaseURL }}/img/favicon.ico" type="img/png">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -51,7 +59,8 @@
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
