@@ -13,7 +13,7 @@ disableKinds = ["tags", "in"]
   Description = "Who wants pancakes!?"
   Author = "Patrick Armentrout"
   email = "patrick.armentrout@gmail.com"
-  Ganalytics = "XX-00000000-0"
+  Ganalytics = "UA-138628314-1"
   hjsStyle = "default"
   paginatedsections = ["posts"]
 
